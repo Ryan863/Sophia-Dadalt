@@ -4,7 +4,7 @@ import { useRef } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { ShieldCheck, Target, HeartHandshake, Award, ArrowRight } from "lucide-react";
+import { ShieldCheck, Target, HeartHandshake, Award, ArrowRight, User } from "lucide-react";
 import { getWhatsAppUrl } from "@/lib/utils";
 
 export default function AboutSophia() {
@@ -34,16 +34,18 @@ export default function AboutSophia() {
           {/* Left Column: Official SD Executive Showcase */}
           <div className="lg:col-span-5 relative flex justify-center">
             <div className="about-reveal relative w-full max-w-[390px] rounded-3xl overflow-hidden border border-white/[0.12] bg-gradient-to-b from-[#18181D] via-[#111114] to-[#0A0A0C] p-7 shadow-2xl space-y-6">
-              {/* Emblem Area */}
-              <div className="relative w-full aspect-square max-w-[280px] mx-auto rounded-2xl overflow-hidden bg-black/60 border border-white/[0.08] flex items-center justify-center p-6 shadow-inner">
-                <div className="relative w-full h-full">
-                  <Image
-                    src="/images/logo/sd-logo.png"
-                    alt="SD Apoio Comercial — Monograma Oficial"
-                    fill
-                    className="object-contain filter drop-shadow-[0_8px_20px_rgba(255,255,255,0.12)]"
-                    sizes="(max-width: 768px) 100vw, 320px"
-                  />
+              {/* Espaço reservado para Foto Pessoal */}
+              <div className="relative w-full aspect-square max-w-[280px] mx-auto rounded-2xl border-2 border-dashed border-white/15 bg-white/[0.02] flex flex-col items-center justify-center p-6 text-center space-y-3 group hover:border-[#D4AF37]/40 transition-colors">
+                <div className="w-12 h-12 rounded-full bg-white/[0.05] border border-white/10 flex items-center justify-center text-[#A1A1AA] group-hover:text-[#D4AF37] group-hover:border-[#D4AF37]/30 transition-colors">
+                  <User className="w-6 h-6 stroke-[1.6]" />
+                </div>
+                <div className="space-y-1">
+                  <span className="text-xs uppercase tracking-wider text-[#F5F5F7] font-medium block">
+                    Foto pessoal a ser inserida
+                  </span>
+                  <span className="text-[11px] text-[#A1A1AA] block font-light">
+                    (Espaço reservado para ensaio profissional)
+                  </span>
                 </div>
               </div>
 

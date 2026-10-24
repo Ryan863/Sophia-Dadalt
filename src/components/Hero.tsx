@@ -4,7 +4,7 @@ import { useRef } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { MessageCircle, ShieldCheck, CheckCircle2, Sparkles, Clock, ArrowRight } from "lucide-react";
+import { MessageCircle, ShieldCheck, CheckCircle2, Sparkles, Clock, ArrowRight, User } from "lucide-react";
 import { getWhatsAppUrl } from "@/lib/utils";
 
 if (typeof window !== "undefined") {
@@ -151,17 +151,18 @@ export default function Hero() {
                 </span>
               </div>
 
-              {/* 3D Silver Logo Emblem */}
-              <div className="relative w-full aspect-square max-w-[320px] mx-auto rounded-2xl overflow-hidden bg-black/60 border border-white/[0.08] flex items-center justify-center p-6 shadow-inner group">
-                <div className="relative w-full h-full">
-                  <Image
-                    src="/images/logo/sd-logo.png"
-                    alt="SD Apoio Comercial — Monograma Oficial"
-                    fill
-                    priority
-                    className="object-contain filter drop-shadow-[0_10px_25px_rgba(255,255,255,0.15)] transition-transform duration-500 group-hover:scale-105"
-                    sizes="(max-width: 768px) 100vw, 360px"
-                  />
+              {/* Espaço reservado para Foto Pessoal */}
+              <div className="relative w-full aspect-square max-w-[320px] mx-auto rounded-2xl border-2 border-dashed border-white/15 bg-white/[0.02] flex flex-col items-center justify-center p-6 text-center space-y-3 group hover:border-[#D4AF37]/40 transition-colors">
+                <div className="w-12 h-12 rounded-full bg-white/[0.05] border border-white/10 flex items-center justify-center text-[#A1A1AA] group-hover:text-[#D4AF37] group-hover:border-[#D4AF37]/30 transition-colors">
+                  <User className="w-6 h-6 stroke-[1.6]" />
+                </div>
+                <div className="space-y-1">
+                  <span className="text-xs uppercase tracking-wider text-[#F5F5F7] font-medium block">
+                    Foto pessoal a ser inserida
+                  </span>
+                  <span className="text-[11px] text-[#A1A1AA] block font-light">
+                    (Espaço reservado para ensaio profissional)
+                  </span>
                 </div>
               </div>
 
