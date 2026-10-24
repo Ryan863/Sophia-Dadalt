@@ -16,20 +16,14 @@ export default function Hero() {
 
   useGSAP(
     () => {
+      // Safe reveal animation without locking opacity
       gsap.from(".hero-reveal", {
-        y: 25,
+        y: 20,
         opacity: 0,
-        duration: 0.8,
-        stagger: 0.1,
+        duration: 0.7,
+        stagger: 0.08,
         ease: "power2.out",
-      });
-
-      gsap.from(".hero-image-reveal", {
-        scale: 0.96,
-        opacity: 0,
-        duration: 1,
-        delay: 0.2,
-        ease: "power2.out",
+        clearProps: "all",
       });
     },
     { scope: container }
@@ -38,16 +32,16 @@ export default function Hero() {
   return (
     <section
       ref={container}
-      className="relative min-h-[92vh] pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden flex items-center editorial-grid"
+      className="relative min-h-[85vh] pt-28 pb-14 md:pt-36 md:pb-18 overflow-hidden flex items-center editorial-grid"
     >
       {/* Subtle background ambient gradients */}
-      <div className="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[#D4AF37]/5 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute bottom-10 right-10 w-[400px] h-[400px] bg-white/[0.02] rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[450px] h-[450px] bg-[#D4AF37]/5 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute bottom-10 right-10 w-[350px] h-[350px] bg-white/[0.02] rounded-full blur-[120px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
           {/* Left Column: Copy & High-Conversion CTAs */}
-          <div className="lg:col-span-7 space-y-7">
+          <div className="lg:col-span-7 space-y-6">
             {/* Eyebrow badge */}
             <div className="hero-reveal inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-[#17171A] border border-white/[0.1] shadow-inner">
               <span className="flex h-2 w-2 relative">
@@ -60,7 +54,7 @@ export default function Hero() {
             </div>
 
             {/* Headline H1 */}
-            <h1 className="hero-reveal font-serif-editorial text-4xl sm:text-5xl lg:text-6xl xl:text-[4.2rem] font-bold text-[#F5F5F7] tracking-tight leading-[1.08]">
+            <h1 className="hero-reveal font-serif-editorial text-4xl sm:text-5xl lg:text-6xl xl:text-[4rem] font-bold text-[#F5F5F7] tracking-tight leading-[1.08]">
               Sua empresa pode ser excelente.{" "}
               <span className="italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-[#D4AF37] via-[#E2D9D2] to-[#D4AF37]">
                 Mas ela precisa vender.
@@ -68,21 +62,21 @@ export default function Hero() {
             </h1>
 
             {/* Subheadline */}
-            <p className="hero-reveal text-base sm:text-lg lg:text-xl text-[#A1A1AA] leading-relaxed max-w-2xl font-light">
+            <p className="hero-reveal text-base sm:text-lg text-[#A1A1AA] leading-relaxed max-w-2xl font-light">
               Organizo contatos, resgato orçamentos e faço a prospecção da sua
               empresa. Você foca na estratégia e na entrega; a{" "}
               <span className="text-[#F5F5F7] font-medium">SD organiza o seu comercial</span>.
             </p>
 
             {/* CTAs and Micro-badges */}
-            <div className="hero-reveal pt-2 space-y-4">
+            <div className="hero-reveal pt-1 space-y-4">
               <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
                 <a
                   href={getWhatsAppUrl("Olá, Sophia! Vi sua página e gostaria de agendar um diagnóstico comercial gratuito para minha empresa.")}
                   target="_blank"
                   rel="noopener noreferrer"
                   id="hero-primary-cta"
-                  className="group relative inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full text-sm font-semibold tracking-wider uppercase text-[#0F0F11] bg-gradient-to-r from-[#D4AF37] via-[#E2D9D2] to-[#D4AF37] bg-[length:200%_auto] hover:bg-right transition-all duration-300 shadow-[0_4px_25px_rgba(212,175,55,0.3)] hover:shadow-[0_6px_35px_rgba(212,175,55,0.45)] active:scale-[0.98]"
+                  className="group relative inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full text-sm font-semibold tracking-wider uppercase text-[#0F0F11] bg-gradient-to-r from-[#D4AF37] via-[#E2D9D2] to-[#D4AF37] hover:bg-right transition-all duration-300 shadow-[0_4px_25px_rgba(212,175,55,0.3)] hover:shadow-[0_6px_35px_rgba(212,175,55,0.45)] active:scale-[0.98]"
                 >
                   <MessageCircle className="w-5 h-5 stroke-[2.2]" />
                   <span>Agendar Diagnóstico Gratuito</span>
@@ -105,7 +99,7 @@ export default function Hero() {
             </div>
 
             {/* Pillars Grid */}
-            <div className="hero-reveal pt-6 border-t border-white/[0.08] grid grid-cols-2 sm:grid-cols-3 gap-4">
+            <div className="hero-reveal pt-5 border-t border-white/[0.08] grid grid-cols-2 sm:grid-cols-3 gap-4">
               <div className="flex items-start gap-2.5">
                 <div className="p-1.5 rounded-md bg-white/[0.04] text-[#D4AF37]">
                   <ShieldCheck className="w-4 h-4" />
@@ -138,40 +132,54 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Right Column: Editorial Visual Showcase */}
+          {/* Right Column: Luxury SD 3D Emblem Showcase */}
           <div className="lg:col-span-5 relative flex justify-center items-center">
-            <div className="hero-image-reveal relative w-full max-w-[430px] aspect-[4/5] rounded-3xl overflow-hidden border border-white/[0.12] bg-gradient-to-b from-[#1C1C22] to-[#121215] shadow-2xl group">
-              {/* Gold rim light reflection */}
-              <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-[#D4AF37]/10 to-transparent pointer-events-none z-10" />
+            <div className="relative w-full max-w-[420px] rounded-3xl overflow-hidden border border-white/[0.12] bg-gradient-to-b from-[#18181D] via-[#111114] to-[#0A0A0C] p-8 shadow-2xl space-y-6">
+              {/* Subtle top silver glow */}
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-48 h-32 bg-white/[0.05] rounded-full blur-2xl pointer-events-none" />
 
-              {/* Portrait with Editorial Fade Mask */}
-              <div className="relative w-full h-full mask-editorial-fade">
-                <Image
-                  src="/images/sophia/sophia-hero.png"
-                  alt="Sophia Dadalt — Fundadora da SD Apoio Comercial"
-                  fill
-                  priority
-                  className="object-cover object-top filter grayscale contrast-105 brightness-95 transition-transform duration-700 group-hover:scale-[1.02]"
-                  sizes="(max-width: 768px) 100vw, 430px"
-                />
-              </div>
-
-              {/* Editorial bottom overlay card */}
-              <div className="absolute bottom-5 left-5 right-5 z-20 p-4 rounded-2xl bg-[#0F0F11]/85 backdrop-blur-md border border-white/10 shadow-xl space-y-1">
-                <div className="flex items-center justify-between">
-                  <span className="font-serif-editorial text-lg font-bold text-[#F5F5F7] tracking-wide">
-                    Sophia Dadalt
-                  </span>
-                  <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[10px] font-medium bg-[#D4AF37]/15 text-[#D4AF37] border border-[#D4AF37]/30">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#D4AF37] animate-pulse" />
-                    Online para Atendimento
+              {/* Top pill */}
+              <div className="flex items-center justify-between border-b border-white/[0.06] pb-4">
+                <div className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                  <span className="text-[11px] uppercase tracking-wider text-[#A1A1AA] font-medium">
+                    Diagnóstico Disponível
                   </span>
                 </div>
-                <p className="text-xs text-[#A1A1AA]">
-                  Assessoria e Estruturação Comercial Remota B2B
+                <span className="text-[10px] text-[#D4AF37] px-2.5 py-0.5 rounded-full bg-[#D4AF37]/10 border border-[#D4AF37]/25 font-semibold">
+                  Assessoria B2B
+                </span>
+              </div>
+
+              {/* 3D Silver Logo Emblem */}
+              <div className="relative w-full aspect-square max-w-[320px] mx-auto rounded-2xl overflow-hidden bg-black/60 border border-white/[0.08] flex items-center justify-center p-6 shadow-inner group">
+                <div className="relative w-full h-full">
+                  <Image
+                    src="/images/logo/sd-logo.png"
+                    alt="SD Apoio Comercial — Monograma Oficial"
+                    fill
+                    priority
+                    className="object-contain filter drop-shadow-[0_10px_25px_rgba(255,255,255,0.15)] transition-transform duration-500 group-hover:scale-105"
+                    sizes="(max-width: 768px) 100vw, 360px"
+                  />
+                </div>
+              </div>
+
+              {/* Bottom information card */}
+              <div className="space-y-2 pt-2 border-t border-white/[0.06]">
+                <div className="flex items-center justify-between">
+                  <span className="font-serif-editorial text-xl font-bold text-[#F5F5F7] tracking-wide">
+                    SD Apoio Comercial
+                  </span>
+                  <span className="text-xs text-[#D4AF37] font-medium">
+                    Sophia Dadalt
+                  </span>
+                </div>
+                <p className="text-xs text-[#A1A1AA] leading-relaxed">
+                  Assessoria especializada em rotina comercial, saneamento de CRM e resgate de propostas para PMEs.
                 </p>
-                <div className="pt-1.5 flex items-center justify-between text-[11px] text-[#E2D9D2] border-t border-white/[0.06]">
-                  <span>Santa Catarina • DDD 49</span>
+                <div className="pt-2 flex items-center justify-between text-[11px] text-[#E2D9D2] border-t border-white/[0.05]">
+                  <span>Santa Catarina (DDD 49)</span>
                   <span className="font-medium text-[#D4AF37]">Atendimento Nacional</span>
                 </div>
               </div>

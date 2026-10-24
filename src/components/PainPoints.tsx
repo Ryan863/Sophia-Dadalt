@@ -3,29 +3,22 @@
 import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { XCircle, CheckCircle2, ArrowRight } from "lucide-react";
 import { getWhatsAppUrl } from "@/lib/utils";
-
-if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger, useGSAP);
-}
 
 export default function PainPoints() {
   const container = useRef<HTMLDivElement>(null);
 
   useGSAP(
     () => {
+      // Safe reveal without opacity lock
       gsap.from(".pain-reveal", {
-        scrollTrigger: {
-          trigger: container.current,
-          start: "top 80%",
-        },
-        y: 25,
+        y: 20,
         opacity: 0,
-        duration: 0.8,
-        stagger: 0.12,
+        duration: 0.7,
+        stagger: 0.1,
         ease: "power2.out",
+        clearProps: "all",
       });
     },
     { scope: container }
@@ -34,11 +27,11 @@ export default function PainPoints() {
   return (
     <section
       ref={container}
-      className="py-24 bg-[#0F0F11] border-t border-b border-white/[0.06] relative"
+      className="py-14 sm:py-18 bg-[#0F0F11] border-t border-b border-white/[0.06] relative"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
+        <div className="text-center max-w-3xl mx-auto space-y-3 mb-10">
           <span className="pain-reveal text-xs uppercase tracking-[0.22em] text-[#D4AF37] font-semibold">
             O Diagnóstico da Realidade
           </span>
@@ -52,10 +45,10 @@ export default function PainPoints() {
         </div>
 
         {/* Contrast Comparison Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
           {/* Card: Sem a SD (A Rotina Caótica) */}
-          <div className="pain-reveal rounded-3xl p-8 bg-[#17171A]/70 border border-red-500/20 backdrop-blur-sm relative overflow-hidden space-y-6">
-            <div className="flex items-center justify-between border-b border-white/[0.08] pb-4">
+          <div className="pain-reveal rounded-3xl p-7 sm:p-8 bg-[#17171A]/70 border border-red-500/20 backdrop-blur-sm relative overflow-hidden space-y-5">
+            <div className="flex items-center justify-between border-b border-white/[0.08] pb-3">
               <span className="text-xs uppercase tracking-widest font-semibold text-red-400">
                 Rotina Comercial Tradicional
               </span>
@@ -64,7 +57,7 @@ export default function PainPoints() {
               </span>
             </div>
 
-            <ul className="space-y-4">
+            <ul className="space-y-3.5">
               <li className="flex items-start gap-3.5 text-sm text-[#A1A1AA]">
                 <XCircle className="w-5 h-5 text-red-400 shrink-0 mt-0.5" />
                 <span>
@@ -108,8 +101,8 @@ export default function PainPoints() {
           </div>
 
           {/* Card: Com a SD Apoio Comercial (A Rotina Organizada) */}
-          <div className="pain-reveal rounded-3xl p-8 bg-[#17171A] border border-[#D4AF37]/35 shadow-[0_0_30px_rgba(212,175,55,0.08)] relative overflow-hidden space-y-6">
-            <div className="flex items-center justify-between border-b border-white/[0.08] pb-4">
+          <div className="pain-reveal rounded-3xl p-7 sm:p-8 bg-[#17171A] border border-[#D4AF37]/35 shadow-[0_0_30px_rgba(212,175,55,0.08)] relative overflow-hidden space-y-5">
+            <div className="flex items-center justify-between border-b border-white/[0.08] pb-3">
               <span className="text-xs uppercase tracking-widest font-semibold text-[#D4AF37]">
                 Com a SD Apoio Comercial
               </span>
@@ -118,7 +111,7 @@ export default function PainPoints() {
               </span>
             </div>
 
-            <ul className="space-y-4">
+            <ul className="space-y-3.5">
               <li className="flex items-start gap-3.5 text-sm text-[#A1A1AA]">
                 <CheckCircle2 className="w-5 h-5 text-[#D4AF37] shrink-0 mt-0.5" />
                 <span>
@@ -160,7 +153,7 @@ export default function PainPoints() {
               </li>
             </ul>
 
-            <div className="pt-2">
+            <div className="pt-1">
               <a
                 href={getWhatsAppUrl("Olá, Sophia! Quero organizar o comercial da minha empresa e parar de perder orçamentos.")}
                 target="_blank"

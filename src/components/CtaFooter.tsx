@@ -1,15 +1,11 @@
 'use client';
 
 import { useRef } from "react";
+import Image from "next/image";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { MessageCircle, ArrowRight, ShieldCheck, Heart } from "lucide-react";
+import { MessageCircle, ArrowRight, ShieldCheck } from "lucide-react";
 import { getWhatsAppUrl } from "@/lib/utils";
-
-if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger, useGSAP);
-}
 
 export default function CtaFooter() {
   const container = useRef<HTMLDivElement>(null);
@@ -17,15 +13,11 @@ export default function CtaFooter() {
   useGSAP(
     () => {
       gsap.from(".footer-reveal", {
-        scrollTrigger: {
-          trigger: container.current,
-          start: "top 80%",
-        },
-        y: 25,
-        opacity: 0,
-        duration: 0.8,
-        stagger: 0.1,
+        y: 20,
+        duration: 0.6,
+        stagger: 0.08,
         ease: "power2.out",
+        clearProps: "all",
       });
     },
     { scope: container }
@@ -34,33 +26,33 @@ export default function CtaFooter() {
   return (
     <footer ref={container} className="bg-[#0A0A0C] border-t border-white/[0.08] relative overflow-hidden">
       {/* Upper Pre-Footer Call to Action */}
-      <div className="py-20 sm:py-28 relative">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-[#D4AF37]/5 rounded-full blur-[140px] pointer-events-none" />
+      <div className="py-14 sm:py-20 relative">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-[#D4AF37]/5 rounded-full blur-[140px] pointer-events-none" />
 
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8 relative z-10">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6 relative z-10">
           <div className="footer-reveal inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#17171A] border border-white/[0.1] text-xs text-[#E2D9D2]">
             <ShieldCheck className="w-3.5 h-3.5 text-[#D4AF37]" />
             <span>Assessoria Comercial Personalizada • Vagas Limitadas por Mês</span>
           </div>
 
-          <h2 className="footer-reveal font-serif-editorial text-4xl sm:text-5xl lg:text-6xl font-bold text-[#F5F5F7] tracking-tight leading-[1.1]">
+          <h2 className="footer-reveal font-serif-editorial text-3xl sm:text-4xl lg:text-5xl font-bold text-[#F5F5F7] tracking-tight leading-[1.15]">
             Chega de perder orçamentos por falta de acompanhamento.
           </h2>
 
-          <p className="footer-reveal text-base sm:text-lg text-[#A1A1AA] max-w-2xl mx-auto font-light leading-relaxed">
+          <p className="footer-reveal text-sm sm:text-base text-[#A1A1AA] max-w-2xl mx-auto font-light leading-relaxed">
             Deixe a SD organizar seu comercial enquanto você foca naquilo que
             faz de melhor: liderar o seu negócio e encantar seus clientes.
           </p>
 
-          <div className="footer-reveal pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
+          <div className="footer-reveal pt-2 flex flex-col sm:flex-row items-center justify-center gap-3.5">
             <a
               href={getWhatsAppUrl("Olá, Sophia! Gostaria de agendar o diagnóstico comercial da minha empresa agora.")}
               target="_blank"
               rel="noopener noreferrer"
               id="footer-whatsapp-cta"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full text-sm font-semibold tracking-wider uppercase text-[#0F0F11] bg-gradient-to-r from-[#D4AF37] via-[#E2D9D2] to-[#D4AF37] hover:bg-right transition-all duration-300 shadow-[0_4px_30px_rgba(212,175,55,0.35)] active:scale-[0.98]"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-3.5 rounded-full text-xs sm:text-sm font-semibold tracking-wider uppercase text-[#0F0F11] bg-gradient-to-r from-[#D4AF37] via-[#E2D9D2] to-[#D4AF37] hover:bg-right transition-all duration-300 shadow-[0_4px_30px_rgba(212,175,55,0.35)] active:scale-[0.98]"
             >
-              <MessageCircle className="w-5 h-5 stroke-[2.2]" />
+              <MessageCircle className="w-4 h-4 stroke-[2.2]" />
               <span>Solicitar Diagnóstico Comercial</span>
               <ArrowRight className="w-4 h-4" />
             </a>
@@ -69,7 +61,7 @@ export default function CtaFooter() {
               href="https://www.instagram.com/apoiocomercial.sd"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-4 rounded-full text-sm font-medium text-[#F5F5F7] bg-[#17171A] hover:bg-[#1F1F24] border border-white/10 transition-colors"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full text-xs sm:text-sm font-medium text-[#F5F5F7] bg-[#17171A] hover:bg-[#1F1F24] border border-white/10 transition-colors"
             >
               <span>Acompanhar no Instagram</span>
             </a>
@@ -78,13 +70,18 @@ export default function CtaFooter() {
       </div>
 
       {/* Bottom Legal & Navigation Bar */}
-      <div className="border-t border-white/[0.06] py-10">
+      <div className="border-t border-white/[0.06] py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-            {/* Brand Monogram */}
+            {/* Brand with official SD Monogram */}
             <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-full border border-[#D4AF37]/40 bg-[#17171A] flex items-center justify-center text-[#D4AF37] font-serif-editorial font-bold text-sm">
-                SD
+              <div className="relative w-8 h-8 rounded-lg overflow-hidden border border-white/15 bg-black flex items-center justify-center">
+                <Image
+                  src="/images/logo/sd-logo.png"
+                  alt="SD Logo"
+                  fill
+                  className="object-contain p-0.5"
+                />
               </div>
               <div className="text-left">
                 <span className="font-serif-editorial text-sm font-bold text-[#F5F5F7] block leading-tight">
@@ -97,7 +94,7 @@ export default function CtaFooter() {
             </div>
 
             {/* Links */}
-            <div className="flex flex-wrap items-center justify-center gap-6 text-xs text-[#A1A1AA]">
+            <div className="flex flex-wrap items-center justify-center gap-5 text-xs text-[#A1A1AA]">
               <a href="#servicos" className="hover:text-[#F5F5F7] transition-colors">
                 Serviços
               </a>

@@ -4,13 +4,8 @@ import { useRef } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ShieldCheck, Target, HeartHandshake, Award, ArrowRight } from "lucide-react";
 import { getWhatsAppUrl } from "@/lib/utils";
-
-if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger, useGSAP);
-}
 
 export default function AboutSophia() {
   const container = useRef<HTMLDivElement>(null);
@@ -18,15 +13,11 @@ export default function AboutSophia() {
   useGSAP(
     () => {
       gsap.from(".about-reveal", {
-        scrollTrigger: {
-          trigger: container.current,
-          start: "top 75%",
-        },
-        y: 25,
-        opacity: 0,
-        duration: 0.8,
-        stagger: 0.12,
+        y: 20,
+        duration: 0.6,
+        stagger: 0.08,
         ease: "power2.out",
+        clearProps: "all",
       });
     },
     { scope: container }
@@ -36,41 +27,49 @@ export default function AboutSophia() {
     <section
       id="sobre"
       ref={container}
-      className="py-24 sm:py-32 bg-[#0F0F11] border-t border-white/[0.06] relative overflow-hidden"
+      className="py-14 sm:py-18 bg-[#0F0F11] border-t border-white/[0.06] relative overflow-hidden"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          {/* Left Column: Portrait */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+          {/* Left Column: Official SD Executive Showcase */}
           <div className="lg:col-span-5 relative flex justify-center">
-            <div className="about-reveal relative w-full max-w-[400px] aspect-[4/5] rounded-3xl overflow-hidden border border-white/[0.12] bg-[#17171A] shadow-2xl">
-              <div className="relative w-full h-full mask-editorial-fade">
-                <Image
-                  src="/images/sophia/sophia-about.png"
-                  alt="Sophia Dadalt — Assessora Comercial B2B"
-                  fill
-                  className="object-cover object-top filter grayscale contrast-110"
-                  sizes="(max-width: 768px) 100vw, 400px"
-                />
+            <div className="about-reveal relative w-full max-w-[390px] rounded-3xl overflow-hidden border border-white/[0.12] bg-gradient-to-b from-[#18181D] via-[#111114] to-[#0A0A0C] p-7 shadow-2xl space-y-6">
+              {/* Emblem Area */}
+              <div className="relative w-full aspect-square max-w-[280px] mx-auto rounded-2xl overflow-hidden bg-black/60 border border-white/[0.08] flex items-center justify-center p-6 shadow-inner">
+                <div className="relative w-full h-full">
+                  <Image
+                    src="/images/logo/sd-logo.png"
+                    alt="SD Apoio Comercial — Monograma Oficial"
+                    fill
+                    className="object-contain filter drop-shadow-[0_8px_20px_rgba(255,255,255,0.12)]"
+                    sizes="(max-width: 768px) 100vw, 320px"
+                  />
+                </div>
               </div>
 
-              {/* Floating quote card */}
-              <div className="absolute bottom-4 left-4 right-4 p-4 rounded-2xl bg-[#0F0F11]/90 backdrop-blur-md border border-white/10">
+              {/* Quote card */}
+              <div className="p-4 rounded-2xl bg-[#0F0F11]/90 backdrop-blur-md border border-white/10 space-y-2">
                 <p className="font-serif-editorial italic text-sm text-[#F5F5F7] leading-snug">
                   &ldquo;A venda não acontece no envio do orçamento. Ela acontece no acompanhamento consistente e profissional.&rdquo;
                 </p>
-                <span className="text-[11px] font-sans text-[#D4AF37] block mt-1 uppercase tracking-wider">
-                  — Sophia Dadalt
-                </span>
+                <div className="flex items-center justify-between pt-1 border-t border-white/[0.06]">
+                  <span className="text-[11px] font-sans text-[#D4AF37] uppercase tracking-wider font-semibold">
+                    Sophia Dadalt
+                  </span>
+                  <span className="text-[10px] text-[#A1A1AA]">
+                    Fundadora & Assessora B2B
+                  </span>
+                </div>
               </div>
             </div>
           </div>
 
           {/* Right Column: Bio & Core Pillars */}
-          <div className="lg:col-span-7 space-y-6">
+          <div className="lg:col-span-7 space-y-5">
             <div className="about-reveal inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#17171A] border border-white/[0.08]">
               <Award className="w-3.5 h-3.5 text-[#D4AF37]" />
               <span className="text-xs uppercase tracking-[0.2em] text-[#D4AF37] font-semibold">
-                Sobre a Fundadora & Visão
+                Sobre a Assessoria & Visão
               </span>
             </div>
 
@@ -78,17 +77,17 @@ export default function AboutSophia() {
               Especialista em destravar a rotina comercial de pequenas e médias empresas
             </h2>
 
-            <p className="about-reveal text-sm sm:text-base text-[#A1A1AA] leading-relaxed font-light">
+            <p className="about-reveal text-sm text-[#A1A1AA] leading-relaxed font-light">
               À frente da <strong className="text-[#F5F5F7] font-medium">SD Apoio Comercial</strong>, Sophia Dadalt atua como o braço direito estratégico e operacional de empresários que não têm tempo a perder. Com foco em organização, follow-up consultivo e implementação de processos comerciais sem ruídos, a assessoria transforma bases de contatos inativas em oportunidades concretas de faturamento.
             </p>
 
-            <p className="about-reveal text-sm sm:text-base text-[#A1A1AA] leading-relaxed font-light">
+            <p className="about-reveal text-sm text-[#A1A1AA] leading-relaxed font-light">
               Atuando remotamente para todo o território nacional a partir de Santa Catarina, a SD proporciona a estrutura comercial que a sua empresa precisa, sem a lentidão, burocracia ou os encargos de contratação CLT tradicional.
             </p>
 
             {/* Differential Badges */}
-            <div className="about-reveal grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
-              <div className="p-4 rounded-2xl bg-[#17171A] border border-white/[0.06] space-y-1.5">
+            <div className="about-reveal grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-2">
+              <div className="p-3.5 rounded-2xl bg-[#17171A] border border-white/[0.06] space-y-1">
                 <div className="flex items-center gap-2 text-[#D4AF37]">
                   <Target className="w-4 h-4" />
                   <span className="text-xs font-semibold uppercase tracking-wider text-[#F5F5F7]">
@@ -100,7 +99,7 @@ export default function AboutSophia() {
                 </p>
               </div>
 
-              <div className="p-4 rounded-2xl bg-[#17171A] border border-white/[0.06] space-y-1.5">
+              <div className="p-3.5 rounded-2xl bg-[#17171A] border border-white/[0.06] space-y-1">
                 <div className="flex items-center gap-2 text-[#D4AF37]">
                   <HeartHandshake className="w-4 h-4" />
                   <span className="text-xs font-semibold uppercase tracking-wider text-[#F5F5F7]">
@@ -112,7 +111,7 @@ export default function AboutSophia() {
                 </p>
               </div>
 
-              <div className="p-4 rounded-2xl bg-[#17171A] border border-white/[0.06] space-y-1.5">
+              <div className="p-3.5 rounded-2xl bg-[#17171A] border border-white/[0.06] space-y-1">
                 <div className="flex items-center gap-2 text-[#D4AF37]">
                   <ShieldCheck className="w-4 h-4" />
                   <span className="text-xs font-semibold uppercase tracking-wider text-[#F5F5F7]">
@@ -124,7 +123,7 @@ export default function AboutSophia() {
                 </p>
               </div>
 
-              <div className="p-4 rounded-2xl bg-[#17171A] border border-white/[0.06] space-y-1.5">
+              <div className="p-3.5 rounded-2xl bg-[#17171A] border border-white/[0.06] space-y-1">
                 <div className="flex items-center gap-2 text-[#D4AF37]">
                   <Award className="w-4 h-4" />
                   <span className="text-xs font-semibold uppercase tracking-wider text-[#F5F5F7]">
@@ -137,7 +136,7 @@ export default function AboutSophia() {
               </div>
             </div>
 
-            <div className="about-reveal pt-4">
+            <div className="about-reveal pt-2">
               <a
                 href={getWhatsAppUrl("Olá, Sophia! Gostaria de conversar sobre a rotina da minha empresa e entender como você pode nos apoiar.")}
                 target="_blank"

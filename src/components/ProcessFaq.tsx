@@ -3,13 +3,8 @@
 import { useState, useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ChevronDown, HelpCircle, Shield, Wrench, FileCheck2, Compass } from "lucide-react";
 import { getWhatsAppUrl } from "@/lib/utils";
-
-if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger, useGSAP);
-}
 
 interface AccordionItem {
   id: string;
@@ -66,15 +61,11 @@ export default function ProcessFaq() {
   useGSAP(
     () => {
       gsap.from(".faq-reveal", {
-        scrollTrigger: {
-          trigger: container.current,
-          start: "top 75%",
-        },
-        y: 25,
-        opacity: 0,
-        duration: 0.8,
-        stagger: 0.1,
+        y: 20,
+        duration: 0.6,
+        stagger: 0.08,
         ease: "power2.out",
+        clearProps: "all",
       });
     },
     { scope: container }
@@ -88,11 +79,11 @@ export default function ProcessFaq() {
     <section
       id="faq"
       ref={container}
-      className="py-24 sm:py-32 bg-[#0F0F11] border-t border-white/[0.06] relative"
+      className="py-14 sm:py-18 bg-[#0F0F11] border-t border-white/[0.06] relative"
     >
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center space-y-4 mb-16">
+        <div className="text-center space-y-3 mb-10">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#17171A] border border-white/[0.08]">
             <HelpCircle className="w-3.5 h-3.5 text-[#D4AF37]" />
             <span className="text-xs uppercase tracking-[0.2em] text-[#D4AF37] font-semibold">
@@ -102,14 +93,14 @@ export default function ProcessFaq() {
           <h2 className="font-serif-editorial text-3xl sm:text-4xl lg:text-5xl font-bold text-[#F5F5F7] leading-tight">
             Tudo o que você precisa saber antes de contratar
           </h2>
-          <p className="text-sm sm:text-base text-[#A1A1AA] max-w-2xl mx-auto font-light">
+          <p className="text-xs sm:text-sm text-[#A1A1AA] max-w-2xl mx-auto font-light">
             Transparência absoluta sobre formato de trabalho, segurança de
             dados e implementação da rotina comercial na sua empresa.
           </p>
         </div>
 
         {/* Accordion List */}
-        <div className="space-y-4">
+        <div className="space-y-3.5">
           {faqs.map((faq) => {
             const isOpen = openId === faq.id;
             const Icon = faq.icon;
@@ -125,12 +116,12 @@ export default function ProcessFaq() {
                 <button
                   type="button"
                   onClick={() => toggleAccordion(faq.id)}
-                  className="w-full p-6 text-left flex items-start justify-between gap-4 select-none"
+                  className="w-full p-5 sm:p-6 text-left flex items-start justify-between gap-4 select-none"
                   aria-expanded={isOpen}
                 >
-                  <div className="flex items-start gap-4">
+                  <div className="flex items-start gap-3.5 sm:gap-4">
                     <div
-                      className={`p-2.5 rounded-xl transition-colors shrink-0 mt-0.5 ${
+                      className={`p-2 rounded-xl transition-colors shrink-0 mt-0.5 ${
                         isOpen
                           ? "bg-[#D4AF37]/15 text-[#D4AF37]"
                           : "bg-white/[0.04] text-[#A1A1AA]"
@@ -149,7 +140,7 @@ export default function ProcessFaq() {
                   </div>
 
                   <div
-                    className={`w-8 h-8 rounded-full border border-white/10 flex items-center justify-center shrink-0 transition-transform duration-300 ${
+                    className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full border border-white/10 flex items-center justify-center shrink-0 transition-transform duration-300 ${
                       isOpen
                         ? "rotate-180 bg-[#D4AF37] text-[#0F0F11] border-[#D4AF37]"
                         : "text-[#A1A1AA] bg-white/[0.03]"
@@ -160,11 +151,11 @@ export default function ProcessFaq() {
                 </button>
 
                 {isOpen && (
-                  <div className="px-6 pb-6 pt-2 space-y-3 border-t border-white/[0.06]">
+                  <div className="px-5 sm:px-6 pb-5 pt-1 space-y-2.5 border-t border-white/[0.06]">
                     <div className="inline-block text-[11px] font-semibold text-[#E2D9D2] bg-white/[0.04] px-2.5 py-1 rounded-md border border-white/[0.08]">
                       {faq.highlight}
                     </div>
-                    <p className="text-sm text-[#A1A1AA] leading-relaxed">
+                    <p className="text-xs sm:text-sm text-[#A1A1AA] leading-relaxed">
                       {faq.answer}
                     </p>
                   </div>
@@ -175,12 +166,12 @@ export default function ProcessFaq() {
         </div>
 
         {/* Bottom Fast Diagnostic CTA banner */}
-        <div className="faq-reveal mt-12 p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-[#17171A] via-[#1F1F24] to-[#17171A] border border-white/[0.1] flex flex-col sm:flex-row items-center justify-between gap-6">
+        <div className="faq-reveal mt-8 sm:mt-10 p-5 sm:p-7 rounded-3xl bg-gradient-to-r from-[#17171A] via-[#1F1F24] to-[#17171A] border border-white/[0.1] flex flex-col sm:flex-row items-center justify-between gap-5">
           <div>
-            <h4 className="font-serif-editorial text-xl font-bold text-[#F5F5F7]">
+            <h4 className="font-serif-editorial text-lg sm:text-xl font-bold text-[#F5F5F7]">
               Ficou com alguma dúvida específica sobre o seu nicho?
             </h4>
-            <p className="text-xs sm:text-sm text-[#A1A1AA] mt-1 font-light">
+            <p className="text-xs text-[#A1A1AA] mt-1 font-light">
               Marcenarias, prestadores de serviços, consultorias e empresas regionais possuem rotinas distintas.
             </p>
           </div>

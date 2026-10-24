@@ -3,13 +3,8 @@
 import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Users, FileText, Search, Briefcase, ArrowUpRight, Check } from "lucide-react";
 import { getWhatsAppUrl } from "@/lib/utils";
-
-if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger, useGSAP);
-}
 
 interface ServiceItem {
   id: string;
@@ -99,16 +94,13 @@ export default function ServicesBento() {
 
   useGSAP(
     () => {
+      // Safe animation that never leaves cards invisible
       gsap.from(".bento-card", {
-        scrollTrigger: {
-          trigger: container.current,
-          start: "top 75%",
-        },
-        y: 30,
-        opacity: 0,
-        duration: 0.8,
-        stagger: 0.15,
+        y: 20,
+        duration: 0.6,
+        stagger: 0.08,
         ease: "power2.out",
+        clearProps: "all",
       });
     },
     { scope: container }
@@ -118,15 +110,15 @@ export default function ServicesBento() {
     <section
       id="servicos"
       ref={container}
-      className="py-24 sm:py-32 bg-[#0F0F11] relative overflow-hidden"
+      className="py-14 sm:py-18 bg-[#0F0F11] relative overflow-hidden"
     >
       {/* Background soft glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-[#D4AF37]/5 rounded-full blur-[160px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#D4AF37]/5 rounded-full blur-[140px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
-          <div className="space-y-3 max-w-2xl">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-10 gap-4">
+          <div className="space-y-2 max-w-2xl">
             <span className="text-xs uppercase tracking-[0.24em] text-[#D4AF37] font-semibold">
               Serviços Especializados
             </span>
@@ -134,7 +126,7 @@ export default function ServicesBento() {
               Soluções sob medida para o seu comercial não parar
             </h2>
           </div>
-          <p className="text-sm text-[#A1A1AA] max-w-md font-light leading-relaxed">
+          <p className="text-xs sm:text-sm text-[#A1A1AA] max-w-md font-light leading-relaxed">
             Terceirização comercial executiva, desenhada para pequenas e médias
             empresas que necessitam de método, disciplina e rotina ativa de
             vendas.
@@ -142,22 +134,22 @@ export default function ServicesBento() {
         </div>
 
         {/* Bento Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
           {services.map((item) => {
             const Icon = item.icon;
             return (
               <div
                 key={item.id}
-                className="bento-card group rounded-3xl p-8 bg-[#17171A] border border-white/[0.08] hover:border-[#D4AF37]/40 transition-all duration-300 flex flex-col justify-between hover:shadow-[0_8px_30px_rgba(212,175,55,0.08)] relative overflow-hidden"
+                className="bento-card group rounded-3xl p-6 sm:p-7 bg-[#17171A] border border-white/[0.08] hover:border-[#D4AF37]/40 transition-all duration-300 flex flex-col justify-between hover:shadow-[0_8px_30px_rgba(212,175,55,0.08)] relative overflow-hidden"
               >
                 {/* Top Subtle Light Accent on Hover */}
                 <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
-                <div className="space-y-6">
+                <div className="space-y-5">
                   {/* Top Header with Icon and Badge */}
                   <div className="flex items-center justify-between">
-                    <div className="w-12 h-12 rounded-2xl bg-white/[0.04] border border-white/[0.08] flex items-center justify-center text-[#D4AF37] group-hover:bg-[#D4AF37]/10 transition-colors">
-                      <Icon className="w-6 h-6 stroke-[1.8]" />
+                    <div className="w-11 h-11 rounded-2xl bg-white/[0.04] border border-white/[0.08] flex items-center justify-center text-[#D4AF37] group-hover:bg-[#D4AF37]/10 transition-colors">
+                      <Icon className="w-5 h-5 stroke-[1.8]" />
                     </div>
                     <span className="text-[11px] font-medium uppercase tracking-wider text-[#A1A1AA] px-3 py-1 rounded-full bg-white/[0.03] border border-white/[0.06]">
                       {item.badge}
@@ -165,20 +157,20 @@ export default function ServicesBento() {
                   </div>
 
                   {/* Title & Tagline */}
-                  <div className="space-y-2">
-                    <h3 className="font-serif-editorial text-2xl font-bold text-[#F5F5F7] group-hover:text-[#E2D9D2] transition-colors">
+                  <div className="space-y-1.5">
+                    <h3 className="font-serif-editorial text-xl sm:text-2xl font-bold text-[#F5F5F7] group-hover:text-[#E2D9D2] transition-colors">
                       {item.title}
                     </h3>
                     <p className="text-xs uppercase tracking-wider text-[#D4AF37] font-medium">
                       {item.tagline}
                     </p>
-                    <p className="text-sm text-[#A1A1AA] leading-relaxed pt-1">
+                    <p className="text-xs sm:text-sm text-[#A1A1AA] leading-relaxed pt-1">
                       {item.description}
                     </p>
                   </div>
 
                   {/* Benefit points */}
-                  <ul className="space-y-2.5 pt-2 border-t border-white/[0.06]">
+                  <ul className="space-y-2 pt-2 border-t border-white/[0.06]">
                     {item.benefits.map((b, idx) => (
                       <li
                         key={idx}
@@ -192,12 +184,12 @@ export default function ServicesBento() {
                 </div>
 
                 {/* Card Action Link to WhatsApp */}
-                <div className="pt-8 mt-4 border-t border-white/[0.06]">
+                <div className="pt-6 mt-4 border-t border-white/[0.06]">
                   <a
                     href={getWhatsAppUrl(item.waMessage)}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-between w-full py-3 px-5 rounded-xl bg-white/[0.03] hover:bg-[#D4AF37]/15 border border-white/[0.08] hover:border-[#D4AF37]/40 text-xs font-semibold uppercase tracking-wider text-[#F5F5F7] group-hover:text-[#D4AF37] transition-all duration-200"
+                    className="inline-flex items-center justify-between w-full py-3 px-4 rounded-xl bg-white/[0.03] hover:bg-[#D4AF37]/15 border border-white/[0.08] hover:border-[#D4AF37]/40 text-xs font-semibold uppercase tracking-wider text-[#F5F5F7] group-hover:text-[#D4AF37] transition-all duration-200"
                   >
                     <span>{item.ctaText}</span>
                     <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
